@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject rightSlot;
     private ClickeableItem leftClickedItem;
     private ClickeableItem rightClickedItem;
-    private bool isRunning = true;
+    private bool isPlaying = true;
     private float animationInterval = 2.5f;
     private float animationTimer = 0f;
     private float score = 0;
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!isRunning)
+        if (!isPlaying)
         {
             return;
         }
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (remainingTime <= 0f)
         {
             remainingTime = 0f;
-            isRunning = false;
+            isPlaying = false;
             Debug.Log("Game finished!");
         }
         else
@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         UpdateCountdownText();
     }
 
+    public void OnSettings()
+    {
+        isPlaying = false;
+    }
+
     void UpdateCountdownText()
     {
         int seconds = Mathf.FloorToInt(remainingTime);
@@ -66,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateScoreText()
     {
-        scoreText.text = "Maqui: " + score.ToString();
+        scoreText.text = score.ToString();
     }
 
     void AddPoints()

@@ -13,9 +13,30 @@ public class GameManager : MonoBehaviour
     private bool isPlaying = true;
     private float animationInterval = 2.5f;
     private float animationTimer = 0f;
-    private float score = 0;
+    private int score = 0;
     private float startingTime = 30f;
     private float remainingTime;
+    private SaveSystem saveSystem;
+
+    void Awake()
+    {
+        saveSystem = gameObject.AddComponent<SaveSystem>();
+        LoadGame();
+    }
+
+    void LoadGame()
+    {
+        GameData data = saveSystem.LoadData();
+        // RELLENAR
+    }
+
+    void SaveScore()
+    {
+        GameData prevData = saveSystem.LoadData();
+        GameData data = new GameData();
+        data.totalScore = prevData.totalScore + score;
+        saveSystem.SaveData(data);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +64,7 @@ public class GameManager : MonoBehaviour
         {
             remainingTime = 0f;
             isPlaying = false;
+            SaveScore();
             Debug.Log("Game finished!");
         }
         else

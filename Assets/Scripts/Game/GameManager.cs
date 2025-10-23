@@ -16,27 +16,6 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private float startingTime = 30f;
     private float remainingTime;
-    private SaveSystem saveSystem;
-
-    void Awake()
-    {
-        saveSystem = gameObject.AddComponent<SaveSystem>();
-        LoadGame();
-    }
-
-    void LoadGame()
-    {
-        GameData data = saveSystem.LoadData();
-        // RELLENAR
-    }
-
-    void SaveScore()
-    {
-        GameData prevData = saveSystem.LoadData();
-        GameData data = new GameData();
-        data.totalScore = prevData.totalScore + score;
-        saveSystem.SaveData(data);
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -77,6 +56,12 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateCountdownText();
+    }
+
+    void SaveScore()
+    {
+        DataManager.Instance.userData.totalScore += score;
+        DataManager.Instance.SaveUserData();
     }
 
     public void OnSettings()

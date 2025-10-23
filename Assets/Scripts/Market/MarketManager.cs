@@ -6,20 +6,11 @@ public class MarketManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     private int score;
-    private SaveSystem saveSystem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        saveSystem = gameObject.AddComponent<SaveSystem>();
-        LoadGame();
-
+        score = DataManager.Instance.userData.totalScore;
         UpdateScoreText();
-    }
-
-    void LoadGame()
-    {
-        GameData data = saveSystem.LoadData();
-        score = data.totalScore;
     }
 
     void UpdateScoreText()

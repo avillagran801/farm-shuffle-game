@@ -8,13 +8,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI countdownText;
     public GameObject leftSlot;
     public GameObject rightSlot;
+    public GameObject interfaceManager;
     private ClickeableItem leftClickedItem;
     private ClickeableItem rightClickedItem;
     private bool isPlaying = true;
     private float animationInterval = 2.5f;
     private float animationTimer = 0f;
     private int score = 0;
-    private float startingTime = 30f;
+    private float startingTime = 10f;
     private float remainingTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,10 +42,7 @@ public class GameManager : MonoBehaviour
 
         if (remainingTime <= 0f)
         {
-            remainingTime = 0f;
-            isPlaying = false;
-            SaveScore();
-            Debug.Log("Game finished!");
+            OnGameOver();
         }
         else
         {
@@ -64,9 +62,36 @@ public class GameManager : MonoBehaviour
         DataManager.Instance.SaveUserData();
     }
 
-    public void OnSettings()
+    public void OnPause()
     {
         isPlaying = false;
+    }
+
+    public void OnContinue()
+    {
+        isPlaying = true;
+    }
+
+    public void OnRestart()
+    {
+        isPlaying = true;
+        spawner.SpawnItems();
+
+        score = 0;
+        UpdateScoreText();
+
+        remainingTime = startingTime;
+        UpdateCountdownText();
+    }
+
+    public void OnGameOver()
+    {
+        remainingTime = 0f;
+        isPlaying = false;
+        SaveScore();
+        Debug.Log("Game finished!");
+
+        interfaceManager.GetComponent<InterfaceManager>().OpenGameOver();
     }
 
     void UpdateCountdownText()

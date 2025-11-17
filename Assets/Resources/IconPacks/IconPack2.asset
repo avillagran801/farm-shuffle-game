@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IconPack2
   m_EditorClassIdentifier: Assembly-CSharp::IconPack
   packName: plants
-  price: 150
+  price: 15
   iconSprites:
   - {fileID: 9158811755184055487, guid: 0d185cba27213c44ea9cf8600e13f2cc, type: 3}
   - {fileID: 2742757513112618412, guid: 0d185cba27213c44ea9cf8600e13f2cc, type: 3}

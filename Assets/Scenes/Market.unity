@@ -284,10 +284,10 @@ MonoBehaviour:
   centerIconRender: {fileID: 681636425}
   rightIconRender: {fileID: 516040621}
   priceText: {fileID: 1210201589}
-  iconPacks:
-  - {fileID: 11400000, guid: d3de1d1d91a42f34eb59d2f881440f9a, type: 2}
-  - {fileID: 11400000, guid: 4fa2fd8288a613a4f8d21d6f7e8ab1f9, type: 2}
-  - {fileID: 11400000, guid: b4266b6cfc6309f4bacb600e4f520564, type: 2}
+  price: {fileID: 1210201587}
+  circleIcon: {fileID: 320080234}
+  checkIcon: {fileID: 148594}
+  buyButton: {fileID: 1268284304}
 --- !u!4 &36770165
 Transform:
   m_ObjectHideFlags: 0
@@ -1700,9 +1700,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
+      - m_Target: {fileID: 36770164}
+        m_TargetAssemblyTypeName: MarketManager, Assembly-CSharp
+        m_MethodName: BuyPack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,6 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MarketManager : MonoBehaviour
@@ -10,27 +10,43 @@ public class MarketManager : MonoBehaviour
     public GameObject centerIconRender;
     public GameObject rightIconRender;
     public TextMeshProUGUI priceText;
-    public IconPack[] iconPacks;
+
+    public GameObject price;
+    public GameObject circleIcon;
+    public GameObject checkIcon;
+    public GameObject buyButton;
 
     private int score;
+    private IconPack[] iconPacks;
     private int index = 0;
 
     void Awake()
     {
         score = DataManager.Instance.userData.totalScore;
+        iconPacks = DataManager.Instance.allIconPacks;
+
         UpdateScoreText();
         SetPreviewIcon();
     }
 
     void SetPreviewIcon()
     {
-        leftIconRender.GetComponent<PackRender>().SetDesign(iconPacks[index % iconPacks.Length].getPreviewIcon());
-        centerIconRender.GetComponent<PackRender>().SetDesign(iconPacks[(index + 1) % iconPacks.Length].getPreviewIcon());
-        rightIconRender.GetComponent<PackRender>().SetDesign(iconPacks[(index + 2) % iconPacks.Length].getPreviewIcon());
+        leftIconRender.GetComponent<PackRender>().SetDesign(iconPacks[(index - 1 + iconPacks.Length) % iconPacks.Length].getPreviewIcon());
+        centerIconRender.GetComponent<PackRender>().SetDesign(iconPacks[index].getPreviewIcon());
+        rightIconRender.GetComponent<PackRender>().SetDesign(iconPacks[(index + 1) % iconPacks.Length].getPreviewIcon());
 
-        priceText.text = iconPacks[(index + 1) % iconPacks.Length].price.ToString();
+        priceText.text = iconPacks[index].price.ToString();
 
-        Debug.Log(index);
+        SetBoughtIcon(DataManager.Instance.userData.boughtIconPacks[index]);
+    }
+
+    void SetBoughtIcon(bool bought)
+    {
+        price.SetActive(!bought);
+        circleIcon.SetActive(!bought);
+        buyButton.GetComponent<Button>().interactable = !bought;
+
+        checkIcon.SetActive(bought);
     }
 
     void UpdateScoreText()
@@ -50,9 +66,20 @@ public class MarketManager : MonoBehaviour
         SetPreviewIcon();
     }
 
-    void BuyPack()
+    public void BuyPack()
     {
+        if ((DataManager.Instance.userData.boughtIconPacks[index] == false) && (score >= iconPacks[index].price))
+        {
+            DataManager.Instance.userData.boughtIconPacks[index] = true;
+            DataManager.Instance.userData.totalScore -= iconPacks[index].price;
 
+            DataManager.Instance.SaveUserData();
+
+            score = DataManager.Instance.userData.totalScore;
+
+            UpdateScoreText();
+            SetBoughtIcon(true);
+        }
     }
 
     public void GoHome()

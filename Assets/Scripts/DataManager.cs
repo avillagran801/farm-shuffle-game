@@ -7,7 +7,7 @@ public class UserData
 {
   public bool tutorial = true;
   public int totalScore;
-  public bool[] availableIconPacks;
+  public bool[] boughtIconPacks;
 }
 
 public class UserSettings
@@ -37,6 +37,8 @@ public class DataManager : MonoBehaviour
   }
   public UserData userData = new UserData();
   public UserSettings userSettings = new UserSettings();
+
+  public IconPack[] allIconPacks;
   private string dataPath;
   private string settingsPath;
 
@@ -61,6 +63,19 @@ public class DataManager : MonoBehaviour
 
     LoadUserData();
     LoadUserSettings();
+
+    LoadIconPacks();
+  }
+
+  private void LoadIconPacks()
+  {
+    allIconPacks = Resources.LoadAll<IconPack>("IconPacks");
+
+    if (userData.boughtIconPacks == null || userData.boughtIconPacks.Length != allIconPacks.Length)
+    {
+      userData.boughtIconPacks = new bool[allIconPacks.Length];
+      userData.boughtIconPacks[0] = true;
+    }
   }
 
   public void SaveUserData()

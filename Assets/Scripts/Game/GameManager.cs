@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private float animationInterval = 3f; // 2.5f;
     private float animationTimer = 0f;
     private int score = 0;
-    private float startingTime = 10f;
+    private float startingTime = 20f;
     private float remainingTime;
 
     void Start()

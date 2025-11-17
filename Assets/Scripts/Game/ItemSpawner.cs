@@ -3,13 +3,45 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public Sprite[] itemSprites;
+
     public GameObject itemPrefab;
-    private int numItems = 6;
+    private int numItems = 5;
+    private Sprite[] itemSprites;
     private ClickeableItem[] leftItems;
     private ClickeableItem[] rightItems;
     private Slot leftSlot;
     private Slot rightSlot;
+
+    public void Awake()
+    {
+        IconPack[] auxIconPacks = DataManager.Instance.allIconPacks;
+        bool[] boughtIconPacks = DataManager.Instance.userData.boughtIconPacks;
+
+        int totalAvailableIcons = 0;
+        for (int i = 0; i < auxIconPacks.Length; i++)
+        {
+            if (boughtIconPacks[i])
+            {
+                totalAvailableIcons += auxIconPacks[i].iconSprites.Length;
+            }
+        }
+
+        itemSprites = new Sprite[totalAvailableIcons];
+
+        int index = 0;
+        for (int i = 0; i < auxIconPacks.Length; i++)
+        {
+            if (boughtIconPacks[i])
+            {
+                for (int j = 0; j < auxIconPacks[i].iconSprites.Length; j++)
+                {
+                    itemSprites[index] = auxIconPacks[i].iconSprites[j];
+                    index++;
+                }
+            }
+
+        }
+    }
 
     public void InitializeItems(Slot l, Slot r)
     {

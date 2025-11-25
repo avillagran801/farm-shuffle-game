@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -188,28 +189,7 @@ public class GameManager : MonoBehaviour
 
     public static void Vibrate(long milliseconds)
     {
-        /*
-#if UNITY_ANDROID && !UNITY_EDITOR
-        try
-        {
-            using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
-            using (var currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
-            using (var vibrator = currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator"))
-            {
-                if (vibrator != null)
-                {
-                    vibrator.Call("vibrate", milliseconds);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogWarning("Vibration failed: " + e.Message);
-        }
-#else
-        Debug.Log("Vibration called (ignored in editor)");
-#endif
-*/
+
     }
 
 }

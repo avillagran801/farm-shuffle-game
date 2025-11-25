@@ -27,4 +27,11 @@ public class MainMenu : MonoBehaviour
         // Scene 3: Market
         SceneManager.LoadSceneAsync(3);
     }
+
+    public void Credits()
+    {
+        SoundManager.Instance.PlayEffect(selectSound);
+        // Scene 4: Credits
+        SceneManager.LoadSceneAsync(4);
+    }
 }

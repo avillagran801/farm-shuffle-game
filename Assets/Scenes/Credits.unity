@@ -2442,6 +2442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8361d347cca4da4dac5b0b646ab3899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  titleText: {fileID: 98176158}
   descriptionText: {fileID: 1964985499}
   nextButton: {fileID: 943667801}
   backButton: {fileID: 373027209}

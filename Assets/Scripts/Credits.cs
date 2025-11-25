@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class CreditPage
 {
+    public string title;
     public string description;
 
-    public CreditPage(string d)
+    public CreditPage(string t, string d)
     {
+        title = t;
         description = d;
     }
 }
 
 public class Credits : MonoBehaviour
 {
+    public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
     public GameObject nextButton;
     public GameObject backButton;
@@ -27,13 +30,27 @@ public class Credits : MonoBehaviour
     void Start()
     {
         creditPages.Add(new CreditPage(
-            "Game developed by Ana Banana (avillagran801 on Github)\n\n" +
-            "Sprout Lands UI Pack by Cup Nooble on itch.io\n\n" +
-            "Hana Caraka Series by Otterisk on itch.io"
+            "Game development",
+            "Game developed by Ana Villagran (avillagran801 on Github)\n\n" +
+            "Based on the card game Dobble®"
         ));
 
         creditPages.Add(new CreditPage(
-            "Sound effects made with bfxr.net\n\n"
+            "Sprites credits",
+            "Sprout Lands UI Pack by Cup Nooble\n\n" +
+            "Found on https://cupnooble.itch.io/sprout-lands-ui-pack"
+        ));
+
+        creditPages.Add(new CreditPage(
+            "Sprites credits",
+            "Hana Caraka Series by Otterisk\n\n" +
+            "Found on https://itch.io/c/3569702/hana-caraka-series"
+        ));
+
+        creditPages.Add(new CreditPage(
+            "Music credits",
+            "Manuel Graf - M.Sc. Media Informatics - Munich,Germany - manuelgraf.com- mg@apfelkuh\n\n" +
+            "Found on https://freesound.org/people/ManuelGraf/sounds/410575/"
         ));
 
         backButton.GetComponent<Button>().interactable = false;
@@ -47,6 +64,7 @@ public class Credits : MonoBehaviour
             return;
         }
 
+        titleText.text = creditPages[index].title;
         descriptionText.text = creditPages[index].description;
     }
 

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private float startingTime = 20f;
     private float addTime = 3f;
+    private float minusTime = 1f;
     private float maxTime = 60f;
     private float remainingTime;
 
@@ -125,7 +126,6 @@ public class GameManager : MonoBehaviour
     }
 
     void AddPoints()
-
     {
         SoundManager.Instance.VibrateMedium();
         SoundManager.Instance.PlayScoreEffect();
@@ -146,6 +146,33 @@ public class GameManager : MonoBehaviour
         {
             remainingTime = maxTime;
         }
+
+        leftClickedItem.SetBorder(false);
+        rightClickedItem.SetBorder(false);
+
+        leftClickedItem = null;
+        rightClickedItem = null;
+    }
+
+    void IncorrectPair()
+    {
+        SoundManager.Instance.VibrateStrong();
+        SoundManager.Instance.PlayIncorrectEffect();
+
+        if (remainingTime - minusTime > 0f)
+        {
+            remainingTime -= minusTime;
+        }
+        else
+        {
+            remainingTime = 0f;
+        }
+
+        leftClickedItem.SetBorder(false);
+        rightClickedItem.SetBorder(false);
+
+        leftClickedItem = null;
+        rightClickedItem = null;
     }
 
     public void OnItemClicked(ClickeableItem clickedItem)
@@ -179,18 +206,12 @@ public class GameManager : MonoBehaviour
             if (leftClickedItem.GetPairValue() && rightClickedItem.GetPairValue())
             {
                 AddPoints();
-
-                leftClickedItem = null;
-                rightClickedItem = null;
                 spawner.SpawnItems();
             }
-            // ADD LOGIC HERE!!!!!!!!!!!!!!
-            /*
             else
             {
-
+                IncorrectPair();
             }
-            */
         }
     }
 }

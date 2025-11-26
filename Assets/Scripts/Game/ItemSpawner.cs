@@ -39,7 +39,6 @@ public class ItemSpawner : MonoBehaviour
                     index++;
                 }
             }
-
         }
     }
 
@@ -87,7 +86,7 @@ public class ItemSpawner : MonoBehaviour
         // Sprite pixel_per_unit
         int PPU = 16;
         // Distance between items in pixels
-        float pixelMargin = 3;
+        float pixelMargin = 5; // FIX THIS
         // Inner slot margin in pixels
         float innerPixelMargin = 2;
 
@@ -165,8 +164,6 @@ public class ItemSpawner : MonoBehaviour
             items[i].transform.localPosition = pos;
         }
     }
-
-
 
     public void AssignItemsDesign()
     {

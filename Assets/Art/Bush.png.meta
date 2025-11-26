@@ -141,12 +141,12 @@ TextureImporter:
       name: Bush_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 16
+        x: 6
+        y: 19
+        width: 14
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,12 +163,12 @@ TextureImporter:
       name: Bush_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 15
+        x: 22
+        y: 19
         width: 14
-        height: 14
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -185,12 +185,12 @@ TextureImporter:
       name: Bush_2
       rect:
         serializedVersion: 2
-        x: 17
-        y: 15
+        x: 38
+        y: 19
         width: 14
-        height: 14
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -207,12 +207,12 @@ TextureImporter:
       name: Bush_3
       rect:
         serializedVersion: 2
-        x: 33
-        y: 15
+        x: 54
+        y: 19
         width: 14
-        height: 14
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -229,12 +229,12 @@ TextureImporter:
       name: Bush_4
       rect:
         serializedVersion: 2
-        x: 49
-        y: 15
-        width: 14
-        height: 14
+        x: 1
+        y: 1
+        width: 18
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -247,11 +247,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Bush_5
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e4fedf67c4df7439eba1edc39f5bf3
+      internalID: 1948713186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bush_6
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f798578ef8cde541af100989ae414a6
+      internalID: 585269647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bush_7
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2651c1da333f2034e9a978a1646fad5f
+      internalID: -1172510487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1b2a37a2df7e118489081de39b3e51f9
     internalID: 0
     vertices: []
     indices: 
@@ -259,13 +325,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Bush_0: 4296193443984631328
       Bush_1: -2770932246066905560
       Bush_2: -8304077115233230222
       Bush_3: -8663683955189347131
       Bush_4: 8806556967682631439
+      Bush_5: 1948713186
+      Bush_6: 585269647
+      Bush_7: -1172510487
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

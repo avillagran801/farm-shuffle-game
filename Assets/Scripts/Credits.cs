@@ -49,7 +49,7 @@ public class Credits : MonoBehaviour
         creditPages.Add(new CreditPage(
             "Music credits",
             "Manuel Graf - M.Sc. Media Informatics - Munich,Germany - manuelgraf.com- mg@apfelkuh\n\n" +
-            "Found on https://freesound.org/people/ManuelGraf/sounds/410575/"
+            "Found on https://freesound.org/people/ManuelGraf/sounds/410574/"
         ));
 
         backButton.GetComponent<Button>().interactable = false;

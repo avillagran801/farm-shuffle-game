@@ -10,7 +10,6 @@ public class InterfaceManager : MonoBehaviour
     public GameObject PausePanel;
     public GameObject SettingsPanel;
     public GameObject GameOverPanel;
-
     public TextMeshProUGUI gameOverScoreText;
     public Slider effectsSlider;
     public Slider musicSlider;

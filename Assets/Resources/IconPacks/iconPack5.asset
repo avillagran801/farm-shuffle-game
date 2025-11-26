@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8bff4bddabfd134e9f68ddd7729e2c0, type: 3}
+  m_Name: iconPack5
+  m_EditorClassIdentifier: Assembly-CSharp::IconPack
+  packName: fish
+  price: 40
+  iconSprites:
+  - {fileID: 7704282712893456000, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}
+  - {fileID: -1915776564401465818, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}
+  - {fileID: -8217542319786499577, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}
+  - {fileID: 9156854346723684101, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}
+  - {fileID: -3878289797822314810, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}
+  - {fileID: 6406061711972274550, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}
+  - {fileID: 900668292290427548, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}
+  - {fileID: -1181076974519126152, guid: 29c2249cd00b54c4f9ecbb3c88d7942e, type: 3}

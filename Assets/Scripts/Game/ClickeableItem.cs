@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 
 public class ClickeableItem : MonoBehaviour, IPointerClickHandler
 {
+    public Material normalMaterial;
+    public Material outlineMaterial;
     private GameManager _gameManager;
     private SpriteRenderer _spriteRenderer;
 
@@ -13,12 +15,14 @@ public class ClickeableItem : MonoBehaviour, IPointerClickHandler
     void Awake()
     {
         _gameManager = FindAnyObjectByType<GameManager>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (_gameManager == null)
         {
             Debug.LogError("No GameManager found in the scene!");
         }
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.material = normalMaterial;
     }
 
     public void SetAssignedSlot(int slot) => assignedSlot = slot;
@@ -31,19 +35,17 @@ public class ClickeableItem : MonoBehaviour, IPointerClickHandler
     {
         _spriteRenderer.sprite = newSprite;
         isPair = newPairValue;
-
-        SetBorder(true); // show border by default (optional)
     }
 
     public void SetBorder(bool showBorder)
     {
         if (showBorder)
         {
-            // RELLENAR
+            _spriteRenderer.material = outlineMaterial;
         }
         else
         {
-
+            _spriteRenderer.material = normalMaterial;
         }
     }
 

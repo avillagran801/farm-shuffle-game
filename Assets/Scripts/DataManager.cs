@@ -10,11 +10,6 @@ public class UserData
   public bool[] boughtIconPacks;
 }
 
-public class UserSettings
-{
-  public float musicVolume;
-}
-
 public class DataManager : MonoBehaviour
 {
   private static DataManager _instance;
@@ -36,7 +31,6 @@ public class DataManager : MonoBehaviour
     }
   }
   public UserData userData = new UserData();
-  public UserSettings userSettings = new UserSettings();
 
   public IconPack[] allIconPacks;
   private string dataPath;
@@ -59,10 +53,8 @@ public class DataManager : MonoBehaviour
   {
     // Initialize the paths and load both the user data and settings
     dataPath = Path.Combine(Application.persistentDataPath, "userData.json");
-    settingsPath = Path.Combine(Application.persistentDataPath, "userSettings.json");
 
     LoadUserData();
-    LoadUserSettings();
 
     LoadIconPacks();
   }
@@ -92,20 +84,6 @@ public class DataManager : MonoBehaviour
       Debug.LogError($"Error saving user data: {ex.Message}");
     }
   }
-  public void SaveUserSettings()
-  {
-    // Try to write the last user settings on its json file
-    try
-    {
-      string json = JsonUtility.ToJson(userSettings, true);
-      File.WriteAllText(settingsPath, json);
-      Debug.Log("User settings saved to " + settingsPath);
-    }
-    catch (Exception ex)
-    {
-      Debug.LogError($"Error saving user settings: {ex.Message}");
-    }
-  }
 
   public void LoadUserData()
   {
@@ -132,42 +110,15 @@ public class DataManager : MonoBehaviour
     }
   }
 
-  public void LoadUserSettings()
-  {
-    // Try to load the last user settings on its json file
-    try
-    {
-      if (File.Exists(settingsPath))
-      {
-        string json = File.ReadAllText(settingsPath);
-        userSettings = JsonUtility.FromJson<UserSettings>(json);
-        Debug.Log("User settings loaded from file");
-      }
-      else
-      {
-        // If theres no json file, create a new one
-        Debug.Log("No user settings file found, creating new settings");
-        userSettings = new UserSettings();
-      }
-    }
-    catch (Exception ex)
-    {
-      Debug.LogError($"Error loading user settings: {ex.Message}");
-      userSettings = new UserSettings();
-    }
-  }
-
   private void OnApplicationPause(bool pause)
   {
     if (pause)
     {
       SaveUserData();
-      SaveUserSettings();
     }
   }
   private void OnApplicationQuit()
   {
     SaveUserData();
-    SaveUserSettings();
   }
 }

@@ -83,12 +83,9 @@ public class ItemSpawner : MonoBehaviour
 
     void AssignItemsPosition(Slot slot, ClickeableItem[] items)
     {
-        // Sprite pixel_per_unit
         int PPU = 16;
-        // Distance between items in pixels
-        float pixelMargin = 5; // FIX THIS
-        // Inner slot margin in pixels
-        float innerPixelMargin = 2;
+        float pixelMargin = 2f;
+        float innerPixelMargin = 2f;
 
         float worldMargin = pixelMargin / PPU;
         float innerWorldMargin = innerPixelMargin / PPU;
@@ -96,70 +93,62 @@ public class ItemSpawner : MonoBehaviour
         float slotHalfW = slot.Size.x / 2f;
         float slotHalfH = slot.Size.y / 2f;
 
+        float[] halfW = new float[items.Length];
+        float[] halfH = new float[items.Length];
+        Vector2[] placedPos = new Vector2[items.Length]; // ← KEY FIX
+
+        // Pre-calc sizes
         for (int i = 0; i < items.Length; i++)
         {
             SpriteRenderer sr = items[i].GetComponent<SpriteRenderer>();
 
-            // Random rotation
             float rot = (Random.Range(0, 100) > 60) ? 90f * Random.Range(1, 4) : 0f;
             items[i].transform.rotation = Quaternion.Euler(0, 0, rot);
             items[i].SetIsAxisRotated(rot == 90f || rot == 270f);
 
-            // Sprite world size
-            float halfW = sr.bounds.size.x / 2f;
-            float halfH = sr.bounds.size.y / 2f;
+            float w = sr.sprite.rect.width / PPU;
+            float h = sr.sprite.rect.height / PPU;
 
-            // Swap if rotated
             if (items[i].GetIsAxisRotated())
-            {
-                float t = halfW;
-                halfW = halfH;
-                halfH = t;
-            }
+                (w, h) = (h, w);
 
-            // Allowed placement region
-            float maxX = slotHalfW - halfW - worldMargin - innerWorldMargin;
-            float maxY = slotHalfH - halfH - worldMargin - innerWorldMargin;
+            halfW[i] = w / 2f;
+            halfH[i] = h / 2f;
+        }
+
+        // Place items
+        for (int i = 0; i < items.Length; i++)
+        {
+            float maxX = slotHalfW - halfW[i] - worldMargin - innerWorldMargin;
+            float maxY = slotHalfH - halfH[i] - worldMargin - innerWorldMargin;
 
             Vector2 pos = Vector2.zero;
-            bool valid = false;
-            int attempts = 0;
+            bool validPosition = false;
 
-            while (!valid && attempts < 200)
+            for (int attempts = 0; attempts < 200 && !validPosition; attempts++)
             {
                 pos = new Vector2(Random.Range(-maxX, maxX),
                                   Random.Range(-maxY, maxY));
 
-                valid = true;
+                validPosition = true;
 
-                // Check overlap with previous items
                 for (int j = 0; j < i; j++)
                 {
-                    SpriteRenderer otherSR = items[j].GetComponent<SpriteRenderer>();
+                    float minDist = Mathf.Max(halfW[i], halfH[i]) +
+                                    Mathf.Max(halfW[j], halfH[j]) +
+                                    worldMargin;
 
-                    float otherHalfW = otherSR.bounds.size.x / 2f;
-                    float otherHalfH = otherSR.bounds.size.y / 2f;
-
-                    if (items[j].GetIsAxisRotated())
+                    if (Vector2.Distance(pos, placedPos[j]) < minDist)
                     {
-                        float t = otherHalfW;
-                        otherHalfW = otherHalfH;
-                        otherHalfH = t;
-                    }
-
-                    // Separation test with margin
-                    if (Mathf.Abs(pos.x - items[j].transform.localPosition.x) < (halfW + otherHalfW + worldMargin) &&
-                        Mathf.Abs(pos.y - items[j].transform.localPosition.y) < (halfH + otherHalfH + worldMargin))
-                    {
-                        valid = false;
+                        validPosition = false;
                         break;
                     }
                 }
-
-                attempts++;
             }
 
-            // Assign final position
+            // Save the final position BEFORE assigning
+            placedPos[i] = pos;
+
             items[i].transform.SetParent(slot.transform, false);
             items[i].transform.localPosition = pos;
         }

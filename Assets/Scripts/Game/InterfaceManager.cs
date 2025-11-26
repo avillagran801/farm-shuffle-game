@@ -129,5 +129,4 @@ public class InterfaceManager : MonoBehaviour
     {
         SoundManager.Instance.ChangeVibrationIntensity(value);
     }
-
 }

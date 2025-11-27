@@ -176,11 +176,16 @@ public class GameManager : MonoBehaviour
 
     void RestartSelectedItems()
     {
-        leftClickedItem.SetBorder(false);
-        rightClickedItem.SetBorder(false);
-
-        leftClickedItem = null;
-        rightClickedItem = null;
+        if (leftClickedItem != null)
+        {
+            leftClickedItem.SetBorder(false);
+            leftClickedItem = null;
+        }
+        if (rightClickedItem != null)
+        {
+            rightClickedItem.SetBorder(false);
+            rightClickedItem = null;
+        }
     }
 
     void UpdateGameDificulty()

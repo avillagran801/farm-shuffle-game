@@ -44,4 +44,11 @@ public class MainMenu : MonoBehaviour
         // Scene 5: Settings
         SceneManager.LoadSceneAsync(5);
     }
+
+    public void Tutorial()
+    {
+        SoundManager.Instance.PlaySelectEffect();
+        // Scene 1: Settings
+        SceneManager.LoadSceneAsync(1);
+    }
 }

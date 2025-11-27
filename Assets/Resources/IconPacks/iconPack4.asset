@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: iconPack4
   m_EditorClassIdentifier: Assembly-CSharp::IconPack
   packName: oreNGems
-  price: 100
+  price: 55
   iconSprites:
   - {fileID: 2335828927570728947, guid: 6029d1b0c1e5b0e41819de8826c98aa8, type: 3}
   - {fileID: 8429527289379237140, guid: 6029d1b0c1e5b0e41819de8826c98aa8, type: 3}

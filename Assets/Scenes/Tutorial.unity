@@ -266,7 +266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip
+  m_text: back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fb57bd82a01eb6b48ae90621133bfae3, type: 2}
   m_sharedMaterial: {fileID: 231339093218493311, guid: fb57bd82a01eb6b48ae90621133bfae3, type: 2}
@@ -896,7 +896,7 @@ GameObject:
   - component: {fileID: 300901187}
   - component: {fileID: 300901186}
   m_Layer: 5
-  m_Name: Skip
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,7 +968,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1882840280}
         m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: GoHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

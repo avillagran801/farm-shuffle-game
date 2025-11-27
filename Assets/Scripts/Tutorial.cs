@@ -124,6 +124,13 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    public void GoHome()
+    {
+        SoundManager.Instance.PlaySelectEffect();
+        // Scene 0: Main menu
+        SceneManager.LoadSceneAsync(0);
+    }
+
     public void PlayGame()
     {
         SoundManager.Instance.PlaySelectEffect();

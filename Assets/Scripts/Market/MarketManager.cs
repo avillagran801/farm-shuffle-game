@@ -14,6 +14,8 @@ public class MarketManager : MonoBehaviour
     public GameObject circleIcon;
     public GameObject checkIcon;
     public GameObject buyButton;
+    public GameObject equipButton;
+    public TextMeshProUGUI equipText;
     private int score;
     private IconPack[] iconPacks;
     private int index = 0;
@@ -35,16 +37,34 @@ public class MarketManager : MonoBehaviour
 
         priceText.text = iconPacks[index].price.ToString();
 
-        SetBoughtIcon(DataManager.Instance.userData.boughtIconPacks[index]);
+        SetBought(DataManager.Instance.userData.boughtIconPacks[index]);
+        SetEquiped(DataManager.Instance.userData.equipedIconPacks[index]);
     }
 
-    void SetBoughtIcon(bool bought)
+    void SetBought(bool bought)
     {
         price.SetActive(!bought);
         circleIcon.SetActive(!bought);
-        buyButton.GetComponent<Button>().interactable = !bought;
 
         checkIcon.SetActive(bought);
+
+        buyButton.SetActive(!bought);
+    }
+
+    void SetEquiped(bool equiped)
+    {
+        // equipButton.SetActive(equiped);
+
+        if (index == 0)
+        {
+            equipText.text = "---";
+            equipButton.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            equipText.text = equiped ? "Unequip" : "Equip";
+            equipButton.GetComponent<Button>().interactable = true;
+        }
     }
 
     void UpdateScoreText()
@@ -80,11 +100,28 @@ public class MarketManager : MonoBehaviour
             score = DataManager.Instance.userData.totalScore;
 
             UpdateScoreText();
-            SetBoughtIcon(true);
+            SetBought(true);
+            EquipPack();
+            SetEquiped(true);
         }
         else
         {
             SoundManager.Instance.PlayIncorrectEffect();
+        }
+    }
+
+    public void EquipPack()
+    {
+        if (DataManager.Instance.userData.boughtIconPacks[index] == true)
+        {
+            SoundManager.Instance.PlaySelectEffect();
+
+            bool isEquiped = DataManager.Instance.userData.equipedIconPacks[index];
+
+            SetEquiped(!isEquiped);
+            DataManager.Instance.userData.equipedIconPacks[index] = !isEquiped;
+
+            DataManager.Instance.SaveUserData();
         }
     }
 

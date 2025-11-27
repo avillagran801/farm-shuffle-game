@@ -15,12 +15,12 @@ public class ItemSpawner : MonoBehaviour
     public void Awake()
     {
         IconPack[] auxIconPacks = DataManager.Instance.allIconPacks;
-        bool[] boughtIconPacks = DataManager.Instance.userData.boughtIconPacks;
+        bool[] equipedIconPacks = DataManager.Instance.userData.equipedIconPacks;
 
         int totalAvailableIcons = 0;
         for (int i = 0; i < auxIconPacks.Length; i++)
         {
-            if (boughtIconPacks[i])
+            if (equipedIconPacks[i])
             {
                 totalAvailableIcons += auxIconPacks[i].iconSprites.Length;
             }
@@ -31,7 +31,7 @@ public class ItemSpawner : MonoBehaviour
         int index = 0;
         for (int i = 0; i < auxIconPacks.Length; i++)
         {
-            if (boughtIconPacks[i])
+            if (equipedIconPacks[i])
             {
                 for (int j = 0; j < auxIconPacks[i].iconSprites.Length; j++)
                 {

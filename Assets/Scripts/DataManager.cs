@@ -8,6 +8,7 @@ public class UserData
   public bool tutorial = true;
   public int totalScore;
   public bool[] boughtIconPacks;
+  public bool[] equipedIconPacks;
 }
 
 public class DataManager : MonoBehaviour
@@ -34,7 +35,6 @@ public class DataManager : MonoBehaviour
 
   public IconPack[] allIconPacks;
   private string dataPath;
-  private string settingsPath;
 
   void Awake()
   {
@@ -67,6 +67,9 @@ public class DataManager : MonoBehaviour
     {
       userData.boughtIconPacks = new bool[allIconPacks.Length];
       userData.boughtIconPacks[0] = true;
+
+      userData.equipedIconPacks = new bool[allIconPacks.Length];
+      userData.equipedIconPacks[0] = true;
     }
   }
 

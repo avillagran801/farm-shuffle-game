@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IconPack3
   m_EditorClassIdentifier: Assembly-CSharp::IconPack
   packName: waterPlants
-  price: 50
+  price: 25
   iconSprites:
   - {fileID: 243482843934625900, guid: ef1b99e34ff27cc40a8fdf3543b8b1a4, type: 3}
   - {fileID: 7395775849409967359, guid: ef1b99e34ff27cc40a8fdf3543b8b1a4, type: 3}

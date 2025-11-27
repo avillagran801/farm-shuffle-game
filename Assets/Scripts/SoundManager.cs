@@ -273,11 +273,19 @@ public class SoundManager : MonoBehaviour
 
     public void PlayGameMusic()
     {
-        musicSource.Stop();
+        if (musicSource.clip == menuMusic)
+        {
+            musicSource.Stop();
+        }
 
         if (gameMusic == null)
         {
             Debug.LogWarning("No gameMusic AudioClip assigned!");
+            return;
+        }
+
+        if (musicSource.isPlaying)
+        {
             return;
         }
 
@@ -288,11 +296,19 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMenuMusic()
     {
-        musicSource.Stop();
+        if (musicSource.clip == gameMusic)
+        {
+            musicSource.Stop();
+        }
 
         if (menuMusic == null)
         {
             Debug.LogWarning("No menuMusic AudioClip assigned!");
+            return;
+        }
+
+        if (musicSource.isPlaying)
+        {
             return;
         }
 

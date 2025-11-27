@@ -3592,6 +3592,9 @@ MonoBehaviour:
   leftSlot: {fileID: 2038259278}
   rightSlot: {fileID: 1678808169}
   interfaceManager: {fileID: 515931160}
+  baseAnimationInterval: 4
+  minAnimationInterval: 0.8
+  speedPerPoint: 0.04
 --- !u!4 &1235309872
 Transform:
   m_ObjectHideFlags: 0
@@ -5597,7 +5600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.42085436, g: 0.6437794, b: 0.690566, a: 1}
+  m_Color: {r: 0.47899607, g: 0.78469825, b: 0.8490566, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

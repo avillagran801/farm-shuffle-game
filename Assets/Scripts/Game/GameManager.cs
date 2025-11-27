@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     private ClickeableItem leftClickedItem;
     private ClickeableItem rightClickedItem;
     private bool isPlaying = true;
-    private float animationInterval = 4f; // 2.5f;
+    public float baseAnimationInterval = 4f;
+    public float minAnimationInterval = 0.8f;
+    public float speedPerPoint = 0.04f;
+    private float animationInterval;
     private float animationTimer = 0f;
     private int score = 0;
     private float startingTime = 20f;
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreText();
 
         remainingTime = startingTime;
+        animationInterval = baseAnimationInterval;
         UpdateCountdownText();
     }
 
@@ -149,6 +153,7 @@ public class GameManager : MonoBehaviour
             remainingTime = maxTime;
         }
 
+        UpdateGameDificulty();
         RestartSelectedItems();
     }
 
@@ -176,6 +181,15 @@ public class GameManager : MonoBehaviour
 
         leftClickedItem = null;
         rightClickedItem = null;
+    }
+
+    void UpdateGameDificulty()
+    {
+        float speedMultiplier = 1f + (score * speedPerPoint);
+
+        animationInterval = baseAnimationInterval / speedMultiplier;
+
+        animationInterval = Mathf.Max(animationInterval, minAnimationInterval);
     }
 
     public void OnItemClicked(ClickeableItem clickedItem)

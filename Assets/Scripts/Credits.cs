@@ -36,7 +36,7 @@ public class Credits : MonoBehaviour
 
         creditPages.Add(new CreditPage(
             "Special thanks",
-            "To my teachers Erich Grüttner and Fabian Cid for their advice and technical knowledge\n\n" +
+            "To my teachers Erich Gruttner and Fabian Cid for their advice and technical knowledge\n\n" +
             "To my boyfriend Bastian Cabrera for all his support\n\n" +
             "And to my dear classmates for all the laughs"
         ));

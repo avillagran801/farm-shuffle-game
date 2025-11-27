@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using UnityEngine;
+using System.Security.Cryptography;
+using System.Text;
 
 [System.Serializable]
 public class UserData
@@ -35,6 +37,10 @@ public class DataManager : MonoBehaviour
 
   public IconPack[] allIconPacks;
   private string dataPath;
+  // Your secret key (32 bytes for AES-256)
+  private static readonly byte[] Key = Encoding.UTF8.GetBytes("F4rzL6ykHaVIzRc8wmoe0QD7OFgduG0Z");
+  // 16-byte IV (initialization vector)
+  private static readonly byte[] IV = Encoding.UTF8.GetBytes("8Sh9kCD4jNvX0aK5");
 
   void Awake()
   {
@@ -79,8 +85,10 @@ public class DataManager : MonoBehaviour
     try
     {
       string json = JsonUtility.ToJson(userData, true);
-      File.WriteAllText(dataPath, json);
-      Debug.Log("User data saved to " + dataPath);
+      string encrypted = Encrypt(json);
+
+      File.WriteAllText(dataPath, encrypted);
+      // Debug.Log("User data saved to " + dataPath);
     }
     catch (Exception ex)
     {
@@ -95,9 +103,11 @@ public class DataManager : MonoBehaviour
     {
       if (File.Exists(dataPath))
       {
-        string json = File.ReadAllText(dataPath);
-        userData = JsonUtility.FromJson<UserData>(json);
-        Debug.Log("User data loaded from file");
+        string encryptedJson = File.ReadAllText(dataPath);
+        string decryptedJson = Decrypt(encryptedJson);
+
+        userData = JsonUtility.FromJson<UserData>(decryptedJson);
+        // Debug.Log("User data loaded from file");
       }
       else
       {
@@ -111,6 +121,37 @@ public class DataManager : MonoBehaviour
       Debug.LogError($"Error loading user data: {ex.Message}");
       userData = new UserData();
     }
+  }
+
+  string Encrypt(string plainText)
+  {
+    using Aes aes = Aes.Create();
+    aes.Key = Key;
+    aes.IV = IV;
+
+    using MemoryStream ms = new MemoryStream();
+    using CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write);
+    using StreamWriter sw = new StreamWriter(cs);
+
+    sw.Write(plainText);
+    sw.Close();
+
+    return Convert.ToBase64String(ms.ToArray());
+  }
+
+  string Decrypt(string encryptedText)
+  {
+    byte[] buffer = Convert.FromBase64String(encryptedText);
+
+    using Aes aes = Aes.Create();
+    aes.Key = Key;
+    aes.IV = IV;
+
+    using MemoryStream ms = new MemoryStream(buffer);
+    using CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read);
+    using StreamReader sr = new StreamReader(cs);
+
+    return sr.ReadToEnd();
   }
 
   private void OnApplicationPause(bool pause)

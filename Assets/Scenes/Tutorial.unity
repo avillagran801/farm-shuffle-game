@@ -2569,6 +2569,8 @@ MonoBehaviour:
   backButton: {fileID: 373027209}
   playButton: {fileID: 1883059104}
   gameIconsExplanation: {fileID: 604766171}
+  leftCircle: {fileID: 28271118}
+  rightCircle: {fileID: 659185690}
 --- !u!4 &1882840281
 Transform:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -75,6 +76,37 @@ public class GameManager : MonoBehaviour
         DataManager.Instance.SaveUserData();
     }
 
+    bool SaveHighScore()
+    {
+        ScoreEntry entry = new ScoreEntry
+        {
+            score = score,
+            timestamp = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+        };
+
+        DataManager.Instance.userData.topScores.Add(entry);
+
+        DataManager.Instance.userData.topScores = DataManager.Instance.userData.topScores
+        .OrderByDescending(e => e.score)
+        .ToList();
+
+        bool isHighScore = DataManager.Instance.userData.topScores.IndexOf(entry) < 5;
+
+        if (!isHighScore)
+        {
+            DataManager.Instance.userData.topScores.Remove(entry);
+            return false;
+        }
+
+        if (DataManager.Instance.userData.topScores.Count > 5)
+        {
+            DataManager.Instance.userData.topScores = DataManager.Instance.userData.topScores.Take(5).ToList();
+        }
+
+        DataManager.Instance.SaveUserData();
+        return true;
+    }
+
     public void OnPause()
     {
         SoundManager.Instance.PlayMenuMusic();
@@ -112,9 +144,14 @@ public class GameManager : MonoBehaviour
         // When the time is over, save the score and open the Game Over screen
         remainingTime = 0f;
         isPlaying = false;
-        SaveScore();
+        bool isHighScore = false;
+        if (score > 0)
+        {
+            isHighScore = SaveHighScore();
+            SaveScore();
+        }
 
-        interfaceManager.GetComponent<InterfaceManager>().OpenGameOver();
+        interfaceManager.GetComponent<InterfaceManager>().OpenGameOver(isHighScore);
     }
 
     void UpdateCountdownText()

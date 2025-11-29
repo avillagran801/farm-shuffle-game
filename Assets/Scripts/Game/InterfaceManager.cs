@@ -82,14 +82,19 @@ public class InterfaceManager : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
-    public void OpenGameOver()
+    public void OpenGameOver(bool isHighScore)
     {
         GameplayObjects.SetActive(false);
         InformationBar.SetActive(false);
         PausePanel.SetActive(false);
         SettingsPanel.SetActive(false);
 
-        gameOverScoreText.text = "You got " + GameManager.GetComponent<GameManager>().scoreText.text + " maqui points";
+        gameOverScoreText.text = "You got " + GameManager.GetComponent<GameManager>().scoreText.text + " maqui points\n";
+
+        if (isHighScore)
+        {
+            gameOverScoreText.text += "That's a new high score!";
+        }
 
         GameOverPanel.SetActive(true);
     }

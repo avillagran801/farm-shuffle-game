@@ -123,6 +123,4 @@ public class Credits : MonoBehaviour
 
         SceneManager.LoadSceneAsync(0);
     }
-
-
 }

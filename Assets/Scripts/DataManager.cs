@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using System.Security.Cryptography;
 using System.Text;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class UserData
@@ -11,6 +12,14 @@ public class UserData
   public int totalScore;
   public bool[] boughtIconPacks;
   public bool[] equipedIconPacks;
+  public List<ScoreEntry> topScores = new List<ScoreEntry>(5);
+}
+
+[System.Serializable]
+public class ScoreEntry
+{
+  public int score;
+  public string timestamp;
 }
 
 public class DataManager : MonoBehaviour

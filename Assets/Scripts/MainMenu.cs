@@ -51,4 +51,11 @@ public class MainMenu : MonoBehaviour
         // Scene 1: Settings
         SceneManager.LoadSceneAsync(1);
     }
+
+    public void Records()
+    {
+        SoundManager.Instance.PlaySelectEffect();
+        // Scene 6: Records
+        SceneManager.LoadSceneAsync(6);
+    }
 }

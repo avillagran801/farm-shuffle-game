@@ -1,9 +1,10 @@
-## GAME STORY
+## STORY
 
 After a strong earthquake in the south of the country, your little farm has ended up completely upside down: the cows are next to the lettuces and your shoes are right next to the eggs. What a mess!
 
 To make things easier for yourself and assess the damage, your mission is to group every pair of items you come across as quickly as possible.
 
+![FarmShuffleMenu](https://github.com/user-attachments/assets/0034cd1a-c267-41bb-89e3-640413d3690b)
 
 ## ABOUT THE GAME
 
@@ -11,6 +12,9 @@ Farm Shuffle is an Android developed on Unity for the UdeC Mobile Game Developme
 
 It's based on the card game Dobble and has a cozy pixel art aeshtetic inspired on Stardew Valley.
 
+![HowToPlay](https://github.com/user-attachments/assets/f80d2d91-5f0c-46b2-a78b-889623cf7345)
+
+![Gameplay](https://github.com/user-attachments/assets/bd5852a6-9c65-4736-8e45-f4410eea847e)
 
 ## SPECIAL THANKS
 

@@ -12,6 +12,8 @@ Farm Shuffle is an Android developed on Unity for the UdeC Mobile Game Developme
 
 It's based on the card game Dobble and has a cozy pixel art aeshtetic inspired on Stardew Valley.
 
+**You can automatically download it [here](https://github.com/avillagran801/farm-shuffle-game/releases/download/v1.0.0/FarmShuffle-1.0.0.apk) .**
+
 ![HowToPlay](https://github.com/user-attachments/assets/f80d2d91-5f0c-46b2-a78b-889623cf7345)
 
 ![Gameplay](https://github.com/user-attachments/assets/bd5852a6-9c65-4736-8e45-f4410eea847e)

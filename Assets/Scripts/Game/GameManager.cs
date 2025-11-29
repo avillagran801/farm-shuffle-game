@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private float startingTime = 20f;
     private float addTime = 3f;
     private float minusTime = 1f;
-    private float maxTime = 60f;
+    private float maxTime = 30f;
     private float remainingTime;
 
     void Start()
